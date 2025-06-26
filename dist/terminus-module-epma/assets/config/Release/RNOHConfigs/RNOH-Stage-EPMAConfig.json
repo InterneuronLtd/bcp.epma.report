@@ -1,0 +1,602 @@
+{
+  "uris": {
+    "baseuri": "https://cp-stage.rnoh.nhs.uk/synapsedynamicapi/",
+    "terminologybaseuri": "https://cp-stage.rnoh.nhs.uk/terminologyapi/api",
+    "warningscomponent": "https://cp-stage.rnoh.nhs.uk/terminusmoduleloader/scripts/epma/warnings.js",
+    "platformserviceuri": "https://cp-stage.rnoh.nhs.uk/synapseplatformservices/api",
+    "gpconnectbaseuri": "NHSDigitalIntegration_API_URL/GPConnect"
+  },
+  "bufferTime": {
+    "buffertimeAmber": 60,
+    "buffertime_criticalDrug": 30,
+    "bufferAdministered": 60
+  },
+  "defaultReminderOverdueTimePeriod": 4,
+  "enablelogging": true,
+  "appsettings": {},
+  "prodbuild": true,
+  "isMultiplelinkedinfusion": true,
+  "pleaseResupplyStockValidation": true,
+  "EnableDischargeSummaryComplete": false,
+  "isReasonForChangeReuired": false,
+  "AppSettings": {
+    "ShowOPModuleInIP": false,
+    "EmailSettings": {
+      "Username": "",
+      "emailFrom": "rnoh.EPMA-Notifications@nhs.net",
+      "fromName": "EPMA-Test",
+      "emailTo": [
+        "rnoh.pharmacyepma@nhs.net"
+      ],
+      "password": ""
+    },
+    "PrescribingForm": {
+      "MandatorySections": {
+        "IPForm": {
+          "Dose": true,
+          "Route": true,
+          "Interval": true,
+          "StartDate": true,
+          "EndDateTime": true,
+          "InfusionType": false,
+          "InfusionRate": true,
+          "InfusionDuration": true,
+          "ReiewComments": true,
+          "Indications": true,
+          "Indications_mmc_controlled": true,
+          "DispensingFrom": false,
+          "AMTherapyStartDate": false
+        },
+        "MOAForm": {
+          "Dose": true,
+          "Route": true,
+          "Interval": true,
+          "StartDate": false,
+          "EndDateTime": false,
+          "InfusionType": false,
+          "InfusionRate": false,
+          "InfusionDuration": false,
+          "ReiewComments": false,
+          "Indications": false,
+          "Indications_mmc_controlled": true,
+          "DispensingFrom": false,
+          "AMTherapyStartDate": false
+        },
+        "MODForm": {
+          "Dose": true,
+          "Route": true,
+          "Interval": true,
+          "StartDate": true,
+          "StartTime": false,
+          "EndDateTime": true,
+          "InfusionType": false,
+          "InfusionRate": true,
+          "InfusionDuration": true,
+          "ReiewComments": false,
+          "Indications": true,
+          "Indications_mmc_controlled": false,
+          "DispensingFrom": false,
+          "AMTherapyStartDate": false,
+          "TotalQuantity": true,
+          "TotalQuantityText": true
+        },
+        "OPForm": {
+          "Dose": true,
+          "Route": true,
+          "Interval": true,
+          "StartDate": true,
+          "StartTime": false,
+          "EndDateTime": true,
+          "InfusionType": false,
+          "InfusionRate": true,
+          "InfusionDuration": true,
+          "ReiewComments": false,
+          "Indications": true,
+          "Indications_mmc_controlled": false,
+          "DispensingFrom": false,
+          "AMTherapyStartDate": false,
+          "TotalQuantity": true,
+          "TotalQuantityText": true
+        },
+        "MOAForm_OrderSetCreator": {
+          "Dose": false,
+          "Route": false,
+          "Interval": false,
+          "StartDate": false,
+          "EndDateTime": false,
+          "InfusionType": false,
+          "InfusionRate": false,
+          "InfusionDuration": false,
+          "ReiewComments": false,
+          "Indications": false,
+          "Indications_mmc_controlled": true,
+          "DispensingFrom": false,
+          "AMTherapyStartDate": false
+        }
+      },
+      "SkipQtyToDoseConversionForCodes": [
+        "35368211000001106",
+        "35368111000001100",
+        "35368311000001103",
+        "317574008",
+        "19975911000001103"
+      ],
+      "Titration": {
+        "Percentage Oxygen Saturation": {
+          "values": [
+            "88-92",
+            "94-98"
+          ],
+          "mandatory": true
+        }
+      },
+      "IntervalPresets": {
+        "mor": "08:00",
+        "mid": "12:00",
+        "eve": "18:00",
+        "night": "22:00",
+        "1x": [
+          "08:00"
+        ],
+        "2x": [
+          "08:00",
+          "20:00"
+        ],
+        "3x": [
+          "08:00",
+          "14:00",
+          "20:00"
+        ],
+        "4x": [
+          "08:00",
+          "12:00",
+          "18:00",
+          "22:00"
+        ],
+        "6h": [
+          "00:00",
+          "06:00",
+          "12:00",
+          "18:00"
+        ],
+        "8h": [
+          "07:00",
+          "15:00",
+          "23:00"
+        ],
+        "12h": [
+          "08:00",
+          "20:00"
+        ],
+        "24h": [
+          "08:00"
+        ]
+      },
+      "InfusionRoutes": [
+        "Epidural",
+        "Perineural",
+        "Subcutaneous",
+        "Intrathecal",
+        "Intraosseous",
+        "Body cavity use",
+        "Endotracheolpulmonary",
+        "Haemodialysis",
+        "Haemofiltration",
+        "Intraamniotic",
+        "Intraarterial",
+        "Intrabursal",
+        "Intraamniotic",
+        "Intraarterial",
+        "Intraarticular",
+        "Intrabursal",
+        "Intracameral",
+        "Intracardiac",
+        "Intracavernous",
+        "Intracerebroventricular",
+        "Intracervical",
+        "Intracoronary",
+        "Intradermal",
+        "Intradiscal",
+        "Intraepidermal",
+        "Intraglandular",
+        "Intralesional",
+        "Intralymphatic",
+        "Intramuscular",
+        "Intraocular",
+        "Intraosseous",
+        "Intraperitoneal",
+        "Intrapleural",
+        "Intrasternal",
+        "Intrathecal",
+        "Intratumoral",
+        "Intrauterine",
+        "Intravenous",
+        "Intraventricular cardiac",
+        "Intravesical",
+        "Intravitreal",
+        "Iontophoreses",
+        "Periarcticualr",
+        "Regional perfusion",
+        "Submucosal rectal"
+      ],
+      "MOASortBy": "prescription::createdon::asc",
+      "MODSortBy": "prescription::createdon::asc",
+      "IPBasketSortBy": "prescription::createdon::asc",
+      "OPBasketSortBy": "prescription::createdon::asc"
+    },
+    "basicgrouping": [
+      "Stat",
+      "Anticoagulation",
+      "Medical Gases",
+      "Antidiabetics",
+      "Antimicrobials",
+      "Regular drugs",
+      "Variable/Continuous infusion",
+      "PRN",
+      "IV Fluid"
+    ],
+    "DCGroups": [
+      {
+        "GroupName": "IV Fluid",
+        "SortOder": 1,
+        "SkipStatGroup": true,
+        "MatchConditions": {
+          "Indications": [],
+          "ClassificationCodes": [
+            {
+              "CodeType": "bnf",
+              "Code": "090202"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "090202"
+            }
+          ],
+          "MatchType": "or"
+        }
+      },
+      {
+        "GroupName": "Medical Gases",
+        "SortOder": 1,
+        "SkipStatGroup": false,
+        "MatchConditions": {
+          "Indications": [],
+          "ClassificationCodes": [
+            {
+              "CodeType": "bnf",
+              "Code": "03.06"
+            },
+            {
+              "CodeType": "bnf",
+              "Code": "19.15"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "03.06"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "19.15"
+            }
+          ],
+          "MatchType": "or"
+        }
+      },
+      {
+        "GroupName": "Anticoagulation",
+        "SortOder": 1,
+        "SkipStatGroup": false,
+        "MatchConditions": {
+          "Indications": [
+            {
+              "Code": "3032",
+              "Indication": "Treatment of venous thromboembolic disease with DVT or pulmonary embolism"
+            },
+            {
+              "Code": "4157",
+              "Indication": "Venous thromboembolism in surgical patients: prophylaxis"
+            },
+            {
+              "Code": "4166",
+              "Indication": "Venous thromboembolism in medical patients: prophylaxis"
+            },
+            {
+              "Code": "4146",
+              "Indication": "Treatment of VTE in pregnancy"
+            },
+            {
+              "Code": "3350",
+              "Indication": "Thromboprophylaxis in bedridden patients with predisposing factors for VTE"
+            }
+          ],
+          "ClassificationCodes": [
+            {
+              "CodeType": "bnf",
+              "Code": "02.08"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "02.08"
+            }
+          ],
+          "MatchType": "or"
+        }
+      },
+      {
+        "GroupName": "Antimicrobials",
+        "SortOder": 2,
+        "SkipStatGroup": false,
+        "MatchConditions": {
+          "Indications": [],
+          "ClassificationCodes": [
+            {
+              "CodeType": "bnf",
+              "Code": "05"
+            },
+            {
+              "CodeType": "bnf",
+              "Code": "11.03"
+            },
+            {
+              "CodeType": "bnf",
+              "Code": "120101"
+            },
+            {
+              "CodeType": "bnf",
+              "Code": "120203"
+            },
+            {
+              "CodeType": "bnf",
+              "Code": "13.10"
+            },
+            {
+              "CodeType": "bnf",
+              "Code": "120302"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "05"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "11.03"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "120101"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "120203"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "13.10"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "120302"
+            }
+          ],
+          "MatchType": "or"
+        }
+      },
+      {
+        "GroupName": "Antidiabetics",
+        "SortOder": 2,
+        "SkipStatGroup": false,
+        "MatchConditions": {
+          "Indications": [],
+          "ClassificationCodes": [
+            {
+              "CodeType": "bnf",
+              "Code": "06.01"
+            },
+            {
+              "CodeType": "fdb",
+              "Code": "06.01"
+            }
+          ],
+          "MatchType": "or"
+        }
+      }
+    ],
+    "BannerWarningOverrides": {
+      "ip": [
+        {
+          "warninggroup": "weight",
+          "canbedismissed": false,
+          "canberesolved": true,
+          "resolvemodule": "",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "vte",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "app-assessments-module",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "allergies",
+          "canbedismissed": false,
+          "canberesolved": true,
+          "resolvemodule": "app-terminus-allergies",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "allergies overridden",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "app-terminus-allergies",
+          "dismissreasonrequired": true,
+          "enabled": true
+        }
+      ],
+      "tci": [
+        {
+          "warninggroup": "weight",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "vte",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "app-assessments-module",
+          "dismissreasonrequired": true,
+          "enabled": false
+        },
+        {
+          "warninggroup": "allergies",
+          "canbedismissed": false,
+          "canberesolved": true,
+          "resolvemodule": "app-terminus-allergies",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "allergies overridden",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "app-terminus-allergies",
+          "dismissreasonrequired": true,
+          "enabled": true
+        }
+      ],
+      "op": [
+        {
+          "warninggroup": "weight",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "vte",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "app-assessments-module",
+          "dismissreasonrequired": true,
+          "enabled": false
+        },
+        {
+          "warninggroup": "allergies",
+          "canbedismissed": false,
+          "canberesolved": true,
+          "resolvemodule": "app-terminus-allergies",
+          "dismissreasonrequired": true,
+          "enabled": true
+        },
+        {
+          "warninggroup": "allergies overridden",
+          "canbedismissed": true,
+          "canberesolved": true,
+          "resolvemodule": "app-terminus-allergies",
+          "dismissreasonrequired": true,
+          "enabled": true
+        }
+      ]
+    },
+    "prescriptionCommentsMaxLenth": 1000,
+    "reviewCommentsMaxLenth": 1000,
+    "nursingInstructionMaxLength": 1000,
+    "timeallowtoupdateOpprescription": 48,
+    "customMedicationNameMaxLength": 256,
+    "reminderTextMaxLenth": 256,
+    "startAMTherapyCountFromDay0": false,
+    "amTherapyCount24Hrs": false,
+    "prescriptionCardCommentsMaxLenth": 256,
+    "enableRBAC": true,
+    "encounterInpatientClassCode": "i",
+    "encounterTCIClassCode": "t",
+    "encounterWLClassCode": "w",
+    "encounterOPClassCode": "o",
+    "ivToOralActivationinhours": 48,
+    "maxNoDaysForSupplyRequest": 180,
+    "titratesIdMapping": {
+      "g": [
+        "G",
+        "GLUF",
+        "GLX"
+      ],
+      "inr": [
+        "SWLP2158",
+        "SWLP2356",
+        "WINR"
+      ],
+      "esr": [
+        "SWLP1774",
+        "ESR"
+      ]
+    },
+    "personAwayHeading": "",
+    "minSafariVersionSupported": 13,
+    "GroupsAuthorisedToWitness": [
+      "Interneuron EPMA Non-med Prescriber Test",
+      "Interneuron EPMA Doctor Test",
+      "Interneuron EPMA Reg Nurse Test",
+      "Interneuron EPMA Superuser Test"
+    ],
+    "EPMAGroups": [
+      "EPMA Non Medical Prescriber",
+      "EPMA Clinical User",
+      "EPMA Doctor",
+      "EPMA DTC approver",
+      "EPMA PGD Nurses",
+      "EPMA RMO Doctor",
+      "EPMA Pharmacist",
+      "EPMA Pharmacy tech",
+      "EPMA Registered Nurse",
+      "EPMA Student Nurse"
+    ],
+    "administrationTimeDiffInMinute": 1,
+    "SupplyNotReqReasons": [
+      "Patient still has medicines they brought in",
+      "Previously supplied by hospital pharmacy",
+      "Patient's own supply at home (POSH)",
+      "Supply at discharged destination",
+      "Not required"
+    ],
+    "ShowMOAArrowMedRec": false,
+    "SplitOnLoadRuleBoundReqs": 4,
+    "SplitOnLoadRuleBoundReqsTrigger": 19,
+    "hideOPLocation": false,
+    "PCANCADrugs": [
+      {
+        "CodeType": "bnf",
+        "Code": "04.07"
+      },
+      {
+        "CodeType": "fdb",
+        "Code": "04.07"
+      }
+    ],
+    "notif_med_admin_status_change_msg": "Status of the prescription has been changed for this patient by the other user.",
+    "notif_med_admin_draft_msg": "New prescription in the draft state has been created for this patient by the other user.",
+    "notif_med_prescribed_msg": "New prescription has been created for this patient by the other user.",
+    "notif_med_administered_msg": "A Drug has been administered for this patient by the other user.",
+    "notif_med_administered_undone_msg": "A Drug administered previously for this patient has been undone by the other user.",
+    "can_send_notification": true,
+    "can_receive_notification": true,
+    "opModeAppName": "Outpatient EPMA",
+    "IsShowUserRole": true,
+    "RepeatReminderMinutesDuration": 10,
+    "UseStoredClassification": false,
+    "ShowFuturePrescriptionsInDays": 7,
+    "gpConnectRepeatMedsInMonths": 100,
+    "gpConnectAcuteMedsInMonths": 100,
+    "enableGPConnectList": false,
+    "gpConnectListDisplayContexts": [
+    ],
+    "allowSupressingBannerWarnings": true,
+    "prescribeUncodedMedWarning": "This medication is not coded. Please use the search box to find and prescribe this medication."
+  }
+}

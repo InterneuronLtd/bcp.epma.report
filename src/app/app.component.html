@@ -1,0 +1,35 @@
+<!--BEGIN LICENSE BLOCK--> 
+<!--Interneuron Terminus
+
+Copyright(C) 2025  Interneuron Limited
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.If not, see<http://www.gnu.org/licenses/>. -->
+<!--END LICENSE BLOCK--> 
+
+
+
+  <div *ngIf="appService.isAppDataReady === true && currentmodule==='app-drug-chart'">
+    <app-drug-chart [groupFilterType]="groupFilterType" *ngIf="showdrugChart">
+    </app-drug-chart>
+  </div>
+
+
+
+
+  <input hidden style="width: 1px;" id = "encounter_input" value='{"hospitalnumber" : "M046455","nhsnumber" : "046 319 7455","firstname" : "Madelyn","lastname" : "Gill","gender" : "Female","dateofbirth" : "2002-09-19","currentlocation" : "PLUM","primarysublocation" : "PLUM-BAY4","secondarysublocation" : "PLUM-BAY4-BED2","admitdatetime" : "2003-09-27T09:29:56.654Z","dischargedatetime" : null,"consultant" : "Mr Calvin","patientclasscode" : "IP","person_id" : "afc1c33e-86b8-4202-a04c-34cffd5b0956","encounter_id" : "2b356ca0-aeea-4461-86b3-00ab89cde8e8"}'/>
+  <button  style="width: 1px;"  id="generate_report" (click) = "generateChart()"></button>
+
+

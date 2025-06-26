@@ -1,0 +1,620 @@
+<!--BEGIN LICENSE BLOCK--> 
+<!--Interneuron Terminus
+
+Copyright(C) 2025  Interneuron Limited
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.If not, see<http://www.gnu.org/licenses/>. -->
+<!--END LICENSE BLOCK--> 
+<ng-template #descriptionTemplate>
+  <table style="width: 100%; margin-left: 10px;">
+    <tr>
+      <td style="text-align: left;border-bottom: none; border-left: none; border-right: none; border-top: none;">
+        <div style="text-align: left;">
+        
+          <span  style="margin-top: 10px; ;font-size: 15px;"> <strong> {{' ' +
+            patientDetails.fullname?.split(',')[0]}}&nbsp;,&nbsp;{{patientDetails.fullname?.split(',')[1]}}&nbsp;({{ patientDetails.hospitalnumber}})</strong></span><br>
+            <span  style="margin-top: 0px; font-size: 15px;">    DoB : {{patientDetails.dob  | date:'yyyy-MM-dd'}}</span><br>
+            <span  style="margin-bottom: 10px; font-size: 12px;">    Gender : {{(patientDetails.gender == 'Male') ? 'MALE' : 'FEMALE'}} </span><br>
+            <span  style="margin-bottom: 10px; font-size: 12px;">   {{encounterDetails.assignedpatientlocationbed }} </span><br>
+        </div>
+      </td>
+      <td style="text-align: right;border-bottom: none; border-left: none; border-right: none; border-top: none;">
+        <div style="text-align: right; margin-right: 10px;">
+          <svg  width="150" height="70" viewBox="0 0 200 88" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect width="150" height="70" fill="url(#pattern0_119_994)"/>
+            <defs>
+            <pattern id="pattern0_119_994" patternContentUnits="objectBoundingBox" width="5" height="5">
+            <use xlink:href="#image0_119_994" transform="scale(0.00333333 0.00757576)"/>
+            </pattern>
+            <image id="image0_119_994" width="300" height="132" xlink:href="data:image/png;base64,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"/>
+            </defs>
+            </svg>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+  <div style="page-break-before: always;"></div>
+    <h5 style="margin-left: 12px;">Allergies and Intolerances</h5>
+  <table *ngIf="appService.allergyintolerance.length > 0 && !shownoAllergy"  style="width: 100%; margin-left: 10px;font-size: 10px;">
+    <tr>
+    <th>Allergen</th> <th>Criticality</th><th>Category</th><th>Reaction</th><th>Status</th>
+  </tr>
+  <tr  *ngFor="let allerg of appService.allergyintolerance; let i = index; let k = index;" [ngStyle]="getRowStyle(allerg)">
+    <td>{{allerg.causativeagentdescription}}</td>
+    <td>{{allerg.criticality}}</td>
+
+    <td>{{allerg.category}}</td>
+
+    <td>{{allerg.reactiontext[0]?.term}}</td>
+
+    <td>{{allerg.clinicalstatusvalue}}</td>
+
+
+  </tr>
+
+  </table>
+  <p *ngIf="appService.allergyintolerance.length == 0" style="color: red;margin-left: 12px;"> <b> There have no allergies recorded for this patient in the Clinical Platform </b></p>
+  <p *ngIf="shownoAllergy" style="color: green;margin-left: 12px;"> <b> This patient has no known allergies</b></p>
+  <table style="width: 100%; margin-left: 10px; margin-top: 900px;">
+    <tr style="height: 50px; font-size: 10px;">
+      <td rowspan="2" style="width:40px; word-break: break-word;">
+        <span>
+          Name : &nbsp;{{' ' +
+          patientDetails.fullname?.split(',')[0]}}&nbsp;,&nbsp;{{patientDetails.fullname?.split(',')[1]}}
+        </span><br>
+        <span>
+          {{'DOB : ' + patientDetails.dob}}
+        </span><br>
+        <span>
+          {{'Age : ' + patientDetails.age}}
+        </span><br>
+        <span>
+          {{(patientDetails.gender == 'Male')? 'Gender: M':'Gender: F'}}
+        </span><br>
+        <span>
+          {{'Weight : ' + appService.refWeightValue + ' ' + 'kg'}}
+        </span><br>
+        <span *ngIf="appService.refHeightValue">
+          {{'Height : ' + appService.refHeightValue + ' ' + 'cms'}}
+        </span><br>
+        <span>
+          {{'Hospital Number : ' + patientDetails.hospitalnumber}}
+        </span><br>
+        <span>
+          {{'NHS Number : ' + patientDetails.nhsnumber}}
+        </span>
+      </td>
+      <td colspan="2" style="width:50px;">
+        <span>Department</span><br>
+        <span>{{encounterDetails.assignedpatientlocationpointofcare}}</span>
+      </td>
+      <td style="width:35px;">
+        <span>Room/Bed</span><br>
+        {{(encounterDetails.assignedpatientlocationroom || encounterDetails.assignedpatientlocationbay) + ' / '}}<br>
+        {{encounterDetails.assignedpatientlocationbed }}
+      </td>
+    </tr>
+    <tr style="font-size: 10px;">
+      <td style="width:30px;">
+        <span>Admission Date </span><br>
+        {{this.encounterDetails.admitdate?.split('-').reverse().join('-')}}<br>
+        <span>Hospitalisation Day {{' ' +
+          this.encounterDetails.dayspassed}}</span>
+      </td>
+      <td style="width:20px;">
+        <span>Consultant </span><br>
+        <!-- {{(encounterDetails.attendingdoctortext?.split('
+          ')[0] || '')}}&nbsp;&nbsp;{{(encounterDetails.attendingdoctortext?.split(' ')[1] || '')}} -->
+        {{encounterDetails.consultingdoctortext}}
+      </td>
+      <td style="width:35px;">
+        <span>Known Allergies </span><br>
+        {{patientDetails.allergies}}
+      </td>
+    </tr>
+  </table>
+</ng-template>
+
+<ng-template #recordChart>
+
+  <ng-container *ngTemplateOutlet="descriptionTemplate"></ng-container>
+
+  <ng-container>
+
+    <div style="margin-left: 200px;margin-top: 50px;" *ngIf="marType === 'active'">
+      <strong>MEDICATIONS &nbsp; PRESCRIBED &nbsp;&nbsp; FOR &nbsp; 3 &nbsp;DAYS</strong>
+    </div>
+    <div style="margin-left: 200px;margin-top: 38px;" *ngIf="marType === 'empty'">
+      <strong>MEDICATION ADMINISTRATION RECORD</strong>
+    </div>
+  </ng-container>
+
+  <div *ngIf="marType === 'active' || marType === 'empty'">
+    <div *ngFor="let pres of prescription; let i = index; let k = index;">
+      <table data-pdfmake="{'headerRows':3}" [ngStyle]="{'margin' : getMargin()}">
+        <!-- <thead> -->
+        <ng-container *ngIf="marType === 'active'">
+          <tr style="font-size: 10px;">
+
+            <td colspan="12">
+              <app-prescription-infusion-print-template style="font-size: 9px; word-break: break-all;"
+                *ngIf="marType === 'active' && pres && appService.GetCurrentPosology(pres).infusiontypeid"
+                [prescription]="pres" componenttype="timeline" [fromPrinting]="true">
+              </app-prescription-infusion-print-template>
+              <app-prescription-non-infusion-print-template style="font-size: 9px; word-break: break-all;"
+                *ngIf="marType === 'active' && pres && !appService.GetCurrentPosology(pres).infusiontypeid"
+                [prescription]="pres" componenttype="timeline" [fromPrinting]="true">
+              </app-prescription-non-infusion-print-template>
+              <div *ngIf="pres &&  appService.GetCurrentPosology(pres).prn">
+                PRN
+              </div>
+              <div *ngIf="pres && appService.GetCurrentPosology(pres).doctorsorder">
+                Prescriber to confirm
+              </div>
+              <div
+                *ngIf="pres && (pres.infusiontype_id === 'ci' || pres.infusiontype_id === 'pca')  && appService.GetCurrentPosology(pres).frequency !== 'variable' && appService.GetCurrentPosology(pres).prescriptionenddate">
+                <div>
+                  {{'Treatment End Date: ' + appService.GetCurrentPosology(pres).prescriptionenddate?.split('T')[0]}}
+                </div>
+                <div>
+                  {{'Treatment End Time: ' + appService.GetCurrentPosology(pres).prescriptionenddate?.split('T')[1]}}
+                </div>
+
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="marType === 'empty'">
+          <tr style="font-size: 10px; height: 100px;">
+
+            <td colspan="12">
+
+            </td>
+          </tr>
+        </ng-container>
+
+        <tr style="font-size: 10px;">
+          <td colspan="2" style="width:55px;text-align: center;">
+            <span>Date</span><br>
+          </td>
+          <td colspan="2" style="width:55px;text-align: center;">
+            <span *ngIf="marType === 'active'">{{dates[0] | date: 'dd/MM/yyyy'}}</span>
+          </td>
+          <td colspan="2" style="width:55px;text-align: center;">
+            <span></span>
+          </td>
+          <td colspan="2" style="width:55px;text-align: center;">
+            <span *ngIf="marType === 'active'">{{dates[1] | date: 'dd/MM/yyyy'}}</span>
+          </td>
+          <td colspan="2" style="width:55px;text-align: center;">
+            <span></span>
+          </td>
+          <td colspan="2" style="width:55px;text-align: center;">
+            <span *ngIf="marType === 'active'">{{dates[2] | date: 'dd/MM/yyyy'}}</span>
+          </td>
+          <!-- <td colspan="2" style="width:55px;text-align: center;">
+              <span></span>
+            </td> -->
+          <!-- <td colspan="2" style="width:55px;text-align: center;">
+              <span *ngIf="marType === 'active'">{{dates[3] | date: 'dd/MM/yyyy'}}</span>
+            </td> -->
+        </tr>
+        <ng-container *ngIf="marType === 'active'">
+          <tr style="font-size: 8px;" [ngStyle]="setHeightWidthForEmptyTemplate()">
+            <ng-container *ngFor="let item of repeatArray;">
+              <td colspan="2" style="text-align: center;">
+                <span>Time and Dose/Rate</span>
+              </td>
+              <td style="text-align: center;">
+                <span>Given</span>
+              </td>
+              <td style="text-align: center;">
+                <span>Checked</span>
+              </td>
+            </ng-container>
+          </tr>
+
+        </ng-container>
+
+
+        <!-- </thead>
+       
+        <tbody> -->
+        <ng-container *ngIf="marType === 'active'">
+          <tr *ngFor="let item of arrayForTemplate(pres,k); let di = index" style="font-size: 9px;">
+            <ng-container *ngFor="let item of repeatArray; let dj = index">
+              <!-- <div> -->
+              <ng-container
+                *ngIf="pres && pres.infusiontype_id !== 'ci' && pres.infusiontype_id !== 'pca' && appService.GetCurrentPosology(pres).frequency !== 'protocol'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  {{returnTimeDose('x',di,dj,k, pres, dates[dj])}}
+                </td>
+              </ng-container>
+
+              <td *ngIf="pres && (pres.infusiontype_id === 'ci' || pres.infusiontype_id === 'pca')"
+                style="height: 20px; width:50px;">
+                {{returnTimeDose('x',di,dj,k,pres, dates[dj])}}
+              </td>
+
+              <ng-container *ngIf="pres && appService.GetCurrentPosology(pres).frequency === 'protocol'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  {{returnTimeDose('protocol',di,dj,k,pres, dates[dj])}}
+                </td>
+              </ng-container>
+              <!-- </div> -->
+
+              <!-- <div> -->
+              <ng-container
+                *ngIf="pres && appService.GetCurrentPosology(pres).frequency !== 'protocol' && pres.infusiontype_id !== 'ci' && pres.infusiontype_id !== 'pca'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  {{returnTimeDose('x',di,dj,k,pres, dates[dj],'dose')}}
+                </td>
+              </ng-container>
+              <td *ngIf="pres && (pres.infusiontype_id === 'ci' || pres.infusiontype_id === 'pca')"
+                style="height: 20px; width:50px;">
+                {{returnTimeDose('x',di, dj, k, pres ,dates[dj], 'dose')}}
+              </td>
+              <ng-container *ngIf="pres && appService.GetCurrentPosology(pres).frequency === 'protocol'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  {{returnTimeDose('protocol',di,dj,k, pres ,dates[dj], 'dose')}}
+                </td>
+              </ng-container>
+              <!-- </div> -->
+
+              <!-- <div> -->
+              <ng-container
+                *ngIf="pres && appService.GetCurrentPosology(pres).frequency !== 'protocol' && pres.infusiontype_id !== 'ci' && pres.infusiontype_id !== 'pca'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  {{returnTimeDose('x',di,dj,k,pres, dates[dj],'administered')}}
+                </td>
+              </ng-container>
+              <td *ngIf="pres && (pres.infusiontype_id === 'ci' || pres.infusiontype_id === 'pca')"
+                style="height: 20px; width:50px;">
+                {{returnTimeDose('x',di, dj, k, pres ,dates[dj], 'administered')}}
+              </td>
+              <ng-container *ngIf="pres && appService.GetCurrentPosology(pres).frequency === 'protocol'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  {{returnTimeDose('protocol',di,dj,k, pres ,dates[dj], 'administered')}}
+                </td>
+              </ng-container>
+
+              <!-- </div> -->
+
+              <!-- <div> -->
+              <ng-container
+                *ngIf="pres && appService.GetCurrentPosology(pres).frequency !== 'protocol' && pres.infusiontype_id !== 'ci' && pres.infusiontype_id !== 'pca'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  <!-- {{returnTimeDose('x',di,dj,k,pres, dates[dj],'administered')}} -->
+                </td>
+              </ng-container>
+              <td *ngIf="pres && (pres.infusiontype_id === 'ci' || pres.infusiontype_id === 'pca')"
+                style="height: 20px; width:50px;">
+                <!-- {{returnTimeDose('x',di, dj, k, pres ,dates[dj], 'administered')}} -->
+              </td>
+              <ng-container *ngIf="pres && appService.GetCurrentPosology(pres).frequency === 'protocol'">
+                <td *ngIf="pres" style="height: 20px; width:50px;">
+                  <!-- {{returnTimeDose('protocol',di,dj,k, pres ,dates[dj], 'administered')}} -->
+                </td>
+
+              </ng-container>
+              <!-- </div> -->
+
+            </ng-container>
+          </tr>
+        </ng-container>
+
+        <!-- </tbody> -->
+        <ng-container *ngIf="marType === 'empty'">
+          <tr style="font-size: 8px;">
+            <!-- <td [attr.rowspan]="7"></td> -->
+            <!-- <td></td>
+            <td></td> -->
+            <ng-container *ngFor="let item of repeatArray;" style="font-size: 12px;">
+              <td colspan="2" style="text-align: center;">
+                <span>Time/Dose</span>
+              </td>
+              <td style="text-align: center;">
+                <span>Given</span>
+              </td>
+              <td style="text-align: center;">
+                <span>Checked</span>
+              </td>
+            </ng-container>
+          </tr>
+
+          <tr style="height: 20px; width:50px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="height: 20px; width:35px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="height: 20px; width:35px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="height: 20px; width:35px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="height: 20px; width:35px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr style="height: 20px; width:35px;">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+
+
+  <div *ngIf="marType === 'active' || marType === 'current' || marType === 'report'">
+    <div #activeHeaderHeight>
+      <div *ngIf="marType === 'report' || marType === 'current' || prescription.length == 0">
+      </div>
+
+      <ng-container *ngTemplateOutlet="activeHeader"></ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="marType === 'active' || marType === 'current' || marType === 'report'">
+    <div>
+
+      <ng-container *ngTemplateOutlet="activeSecondPart"></ng-container>
+    </div>
+  </div>
+
+
+
+</ng-template>
+
+<ng-template #activeHeader>
+  <div>
+
+    <div style="margin-left: 200px;margin-top: 50px;" *ngIf="marType === 'active'">
+      <strong>RECORDED &nbsp;&nbsp;ADMINISTRATIONS FOR &nbsp;PAST &nbsp;5 DAYS </strong>
+    </div>
+    <div style="margin-left: 180px;margin-top: 50px;" *ngIf="marType === 'report'">
+      <strong>RECORDED&nbsp;&nbsp;ADMINISTRATIONS&nbsp;&nbsp;FOR &nbsp;PERIOD
+        &nbsp;{{sdate?.split('-').reverse().join('-') + ' to ' + edate?.split('-').reverse().join('-') }} </strong>
+    </div>
+    <div style="margin-left: 200px;margin-top: 50px;" *ngIf="marType === 'current'">
+      <strong>MEDICATION ADMINISTRATION RECORD &nbsp;&nbsp; {{ todaysDate }} </strong>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #activeSecondPart>
+
+  <div *ngFor="let data of partTwoPrescriptions; let ik = index">
+    <div *ngIf="marType === 'active' || prescription.length == 0 || marType === 'report' || marType === 'current'">
+      <!-- <table>
+        <tr>
+          <td>
+            <table>
+              <tr style="font-size: 12px;">
+                <td style="width:200px; border-top: none; border-left: none; border-right: none;">
+                    <span>Medication - generic name(brand</span><br>
+                    <span>name),dose,dosing interval</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:200px; border-bottom: none; border-left: none; border-right: none;">
+                  <app-prescription-infusion-print-template style="font-size: 9px;" *ngIf="appService.GetCurrentPosology(prescriptionMapping[data.key]).infusiontypeid" [fromPrinting]="true" [prescription]="prescriptionMapping[data.key]" componenttype="timeline">
+                  </app-prescription-infusion-print-template>
+                  <app-prescription-non-infusion-print-template style="font-size: 9px;" *ngIf="!appService.GetCurrentPosology(prescriptionMapping[data.key]).infusiontypeid" [prescription]="prescriptionMapping[data.key]"
+                        componenttype="timeline" [fromPrinting]="true">
+                  </app-prescription-non-infusion-print-template>
+                  <div *ngIf="getStatus(prescriptionMappingForTemplate[data.key].status)" style="font-size: 12px;">
+                    <strong>{{'Status: ' + getStatus(prescriptionMappingForTemplate[data.key].status)}}</strong>
+                  </div><br/>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table style="font-size: 12px;">
+              <tr style="height: 28px; ">
+                <td style="width:150px;text-align: center; border-left: none; border-right: none; border-top: none;">
+                  <span>Status</span><br>
+                </td>
+                <td style="width:150px;text-align: center; border-top: none;">
+                  <span>Date</span>
+                </td>
+                <td style="width:150px;text-align: center; border-left: none; border-right: none; border-top: none;">
+                  <span>Time and Dose / Rate</span>
+                </td>
+              </tr>
+              <tr *ngFor="let infoObj of data['prescription_information']; let i = index" >
+                <td style="border-left: none; border-right: none; border-bottom: none;">
+                  {{infoObj.stat}}
+                </td>
+                <td style="border-bottom: none;">
+                  {{infoObj.date}}
+                </td>
+                <td style="border-left: none; border-right: none; border-bottom: none; word-wrap: break-word;">
+                  {{infoObj.time}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table> -->
+
+      <table data-pdfmake="{'headerRows':2}" [ngStyle]="{'margin' : getMargin()}">
+        <!-- <thead> -->
+        <tr style="font-size: 10px;">
+
+          <td colspan="3">
+            <app-prescription-infusion-print-template style="font-size: 9px;"
+              *ngIf="appService.GetCurrentPosology(prescriptionMapping[data.key]).infusiontypeid" [fromPrinting]="true"
+              [prescription]="prescriptionMapping[data.key]" componenttype="timeline">
+            </app-prescription-infusion-print-template>
+            <app-prescription-non-infusion-print-template style="font-size: 9px;"
+              *ngIf="!appService.GetCurrentPosology(prescriptionMapping[data.key]).infusiontypeid"
+              [prescription]="prescriptionMapping[data.key]" componenttype="timeline" [fromPrinting]="true">
+            </app-prescription-non-infusion-print-template>
+            <div *ngIf="getStatus(prescriptionMappingForTemplate[data.key].status)" style="font-size: 10px;">
+              <strong>{{'Status: ' + getStatus(prescriptionMappingForTemplate[data.key].status)}}</strong>
+            </div><br />
+          </td>
+        </tr>
+
+        <tr style="font-size: 10px;">
+          <td style="height: 20px; width:235px;text-align: center;">
+            <span><b>Status</b></span><br>
+          </td>
+          <td style="height: 20px; width:235px;text-align: center;">
+            <span><b>Date</b></span>
+          </td>
+          <td style="height: 20px; width:235px;text-align: center;">
+            <span><b>Time and Dose / Rate</b></span>
+          </td>
+        </tr>
+        <tr *ngFor="let infoObj of data['prescription_information']; let i = index" style="font-size: 9px;">
+          <td style="height: 20px; width:235px;text-align: center;">
+            {{infoObj.stat}}
+          </td>
+          <td style="height: 20px; width:235px;text-align: center;">
+            {{infoObj.date}}
+          </td>
+          <td style="height: 20px; width:235px; word-wrap: break-all;">
+            {{infoObj.time}}
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- <table style="border-collapse: collapse;">
+        <tr style="font-size: 12px;">
+          <td style="width:250px;">
+              <span>Medication - generic name(brand</span><br>
+              <span>name),dose,dosing interval</span>
+          </td>
+          <td style="width:235px;text-align: center;">
+            <span>Status</span><br>
+          </td>
+          <td style="width:235px;text-align: center;">
+            <span>Date</span>
+          </td>
+          <td style="width:235px;text-align: center;">
+            <span>Time and Dose / Rate</span>
+          </td>
+        </tr>
+      </table>
+      <table style="border-collapse: collapse;">
+        <tr style="min-height: 300px; font-size: 12px;">
+          <td style="width:250px;" rowSpan="{{data['prescription_information'].length + 1}}">
+            <app-prescription-infusion-template style="font-size: 9px;" *ngIf="appService.GetCurrentPosology(prescriptionMapping[data.key]).infusiontypeid" [fromPrinting]="true" [prescription]="prescriptionMapping[data.key]" componenttype="timeline">
+            </app-prescription-infusion-template>
+            <app-prescription-non-infusion-template style="font-size: 9px;" *ngIf="!appService.GetCurrentPosology(prescriptionMapping[data.key]).infusiontypeid" [prescription]="prescriptionMapping[data.key]"
+                  componenttype="timeline" [fromPrinting]="true">
+                </app-prescription-non-infusion-template>
+            <div *ngIf="getStatus(prescriptionMappingForTemplate[data.key].status)">
+              <strong>{{'Status: ' + getStatus(prescriptionMappingForTemplate[data.key].status)}}</strong>
+            </div><br/>
+          </td>
+          <td style="width:235px;text-align: center;"></td>
+          <td style="width:235px;text-align: center;"></td>
+          <td style="width:235px;text-align: center;"></td>
+        </tr>
+        <tr *ngFor="let infoObj of data['prescription_information']; let i = index">
+          <td>
+            {{infoObj.stat}}
+          </td>
+          <td>
+            {{infoObj.date}}
+          </td>
+          <td>
+            {{infoObj.time}}
+          </td>
+        </tr>
+      </table> -->
+    </div>
+
+  </div>
+</ng-template>
+
+
+<app-print-discharge [customTemplate]="recordChart" [view]="'l'" (destroyComponent)="pdfDownloaded()"
+  [title]="'Medication Administration Record'" [dimensions]="[842, 595]" [saveTitle]="'MAR'"
+  [printType]="marType"></app-print-discharge>
